@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000; /* Set background color to black */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        li {
+            margin-right: 10px;
+        }
+
+        .button {
+            width: 30px;
+            height: 30px;
+            background-color: #000; /* Set background color of the button to black */
+            color: #fff; /* Set text color to white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            border-radius: 5px; /* Set border-radius to create button-like appearance */
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #333; /* Darken the button on hover */
+        }
+
+        .button:active {
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add a slight shadow when the button is clicked */
+        }
+
+        .glow {
+            animation: glow 1.5s ease infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                background-color: #4CAF50;
+                color: #fff;
+                box-shadow: 0 0 10px #4CAF50;
+            }
+            25% {
+                background-color: #FFD700; /* Yellow */
+                color: #000;
+                box-shadow: 0 0 10px #FFD700;
+            }
+            50% {
+                background-color: #1E90FF; /* DodgerBlue */
+                color: #fff;
+                box-shadow: 0 0 10px #1E90FF;
+            }
+            75% {
+                background-color: #FF4500; /* OrangeRed */
+                color: #fff;
+                box-shadow: 0 0 10px #FF4500;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <ul>
+            <li>
+                <div class="button" onclick="changeColor(this)">J</div>
+            </li>
+            <li>
+                <div class="button" onclick="changeColor(this)">A</div>
+            </li>
+            <li>
+                <div class="button" onclick="changeColor(this)">M</div>
+            </li>
+            <li>
+                <div class="button" onclick="changeColor(this)">I</div>
+            </li>
+            <li>
+                <div class="button" onclick="changeColor(this)">E</div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function changeColor(element) {
+            var colors = ['#4CAF50', '#FFD700', '#1E90FF', '#FF4500', '#9400D3'];
+
+            if (element.classList.contains('glow')) {
+                // If glow class is present, remove it
+                element.classList.remove('glow');
+                // Set the original background color
+                element.style.backgroundColor = element.dataset.originalColor;
+            } else {
+                // Add glow class to apply glow effect
+                element.classList.add('glow');
+                // Store the original background color
+                element.dataset.originalColor = element.style.backgroundColor;
+                // Set other styles (color, box-shadow, etc.)
+                element.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                element.style.color = '#fff';
+                element.style.boxShadow = '0 0 10px ' + element.style.backgroundColor;
+            }
+        }
+    </script>
+
+</body>
+</html>
